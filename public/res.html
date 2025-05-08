@@ -1,0 +1,127 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CookBook - Home</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #A42956;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: #ffcc00;
+      color: #333;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      border-radius: 6px;
+    }
+
+    .bg {
+      background-image: url('https://tse4.mm.bing.net/th/id/OIP.mg1WmDr1LhkQcPjIVvLq3AHaE8?rs=1&pid=ImgDetMain');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .bg h1 {
+      margin: 0;
+      font-size: 36px;
+      color: white;
+    }
+
+    .bg h2 {
+      margin-top: 10px;
+    }
+
+    #recipes {
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff22;
+      border-radius: 12px;
+    }
+
+    .recipe {
+      margin-bottom: 20px;
+    }
+
+    .recipe h3 {
+      color: #ffcc00;
+      cursor: pointer;
+    }
+
+    .recipe p {
+      color: #f1f1f1;
+      line-height: 1.6;
+      display: none;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg">
+    <h1>Welcome to CookBook</h1>
+    <h2>
+      <a href="login.html">Login</a>
+      <a href="post.html">Post a Recipe</a>
+    </h2>
+  </div>
+
+  <div id="recipes">
+    <!-- Recipes will be loaded here -->
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      // Fetch and fade-in recipes
+      fetch('/recipes')
+        .then(res => res.json())
+        .then(data => {
+          data.forEach(r => {
+            const recipeHTML = `
+              <div class="recipe">
+                <h3>${r.title}</h3>
+                <p>${r.description}</p>
+                <hr>
+              </div>
+            `;
+            const $recipe = $(recipeHTML).hide().appendTo('#recipes').fadeIn(800);
+
+            // Toggle description on click
+            $recipe.find('h3').on('click', function () {
+              $(this).next('p').slideToggle();
+            });
+          });
+        });
+    });
+  </script>
+
+</body>
+</html>

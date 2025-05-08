@@ -1,0 +1,55 @@
+<html>
+<head><style> body {
+       margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+	.container {
+      background-color:#A589B4;
+       border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 25px 30px;
+      width: 500px;
+	  height:300px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+	  
+    }
+	 label {
+      font-weight: bold;
+      font-size: 15px;
+	  
+    }
+	input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px ;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      outline-color: #00bfff;
+    }
+	 button {
+      width: 30%;
+      padding: 6px;
+      background-color: #7BD2C9;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }</style></head>
+<body>
+<form method="POST" action="/post-recipe">
+  <div class="container"><h2>Post a Recipe...</h2>
+  <label for="title">Title: <input type="text" name="title" /><br/></label>
+ <label for="description"> Description:<br/>
+  <textarea name="description" rows="7" cols="65"></textarea><br/></label><br>
+  <center><button type="submit">Post</button></center></div>
+</form>
+</body>
+</html>

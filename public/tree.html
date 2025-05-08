@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #A589B4;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 25px 30px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 21px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0 12px 0;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      outline-color: #00bfff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #7BD2C9;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .small-text {
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .small-text a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .small-text a:hover {
+      color: #ffeecc;
+    }
+
+    .error {
+      color: #ffcccb;
+      font-size: 13px;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+
+    .toggle-box {
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      color: white;
+    }
+
+  </style>
+</head>
+<body bgcolor="#A589B4">
+  <form method="POST" action="/register" onsubmit="return validateForm()">
+    <div class="container">
+      <h1>Register</h1>
+
+      <label for="email">Email ID</label>
+      <input type="text" id="email" name="username" placeholder="example@email.com" required>
+      <div id="emailError" class="error"></div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" required>
+      <div id="confirmError" class="error"></div>
+
+      <div class="toggle-box">
+        <input type="checkbox" onclick="togglePassword()"> Show Password
+      </div>
+
+      <button type="submit">Register</button>
+
+      <div class="small-text">
+        Already have an account? <a href="login.html">Login here</a>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    function validateForm() {
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
+      let confirm = document.getElementById('confirm').value;
+      let emailError = document.getElementById('emailError');
+      let confirmError = document.getElementById('confirmError');
+
+      let valid = true;
+      emailError.innerHTML = '';
+      confirmError.innerHTML = '';
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailError.innerHTML = 'Please enter a valid email address.';
+        valid = false;
+      }
+
+      if (password !== confirm) {
+        confirmError.innerHTML = 'Passwords do not match.';
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    function togglePassword() {
+      let pw = document.getElementById('password');
+      let cpw = document.getElementById('confirm');
+      pw.type = pw.type === 'password' ? 'text' : 'password';
+      cpw.type = cpw.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>
